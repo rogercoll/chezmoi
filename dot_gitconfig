@@ -1,0 +1,38 @@
+[user]
+    email = rogercoll@protonmail.com
+    name = Roger Coll
+    ; signingkey = ~/.ssh/id_ed25519.pub
+[core]
+    editor = nvim
+    excludesFile = ~/.global_gitignore
+    hooksPath = ~/.global_githooks
+[alias]
+    st = status
+    co = checkout
+    ci = commit
+    df = diff
+    br = branch
+    brs = !git for-each-ref --sort='authordate:iso8601' --format='%(authordate:relative)%09%(refname:short)' refs/heads | fzf --tac --bind 'enter:execute(echo {} | rev | cut -f1 | rev | xargs git checkout)+abort,tab:execute-silent(echo {} | rev | cut -f1 | rev | pbcopy)+abort'
+    glo = log --graph --oneline --decorate --all
+    gloo = log --graph --abbrev-commit --all --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
+    l = log --name-status
+    purge-branches = !sh -c 'git branch --merged | grep -v "^*" | xargs git branch -d'
+[color]
+    branch = auto
+    diff = auto
+    status = auto
+    showbranch = auto
+    ui = true
+[color "diff"]
+    meta = yellow bold
+    frag = magenta bold
+    old = red bold
+    new = green bold
+[color "status"]
+    added = green bold
+    changed = yellow bold
+    untracked = red
+[commit]
+    gpgsign = true
+[gpg]
+    format = ssh
