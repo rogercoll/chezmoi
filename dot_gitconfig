@@ -1,7 +1,7 @@
 [user]
     email = rogercoll@protonmail.com
     name = Roger Coll
-    ; signingkey = ~/.ssh/id_ed25519.pub
+    signingkey = ~/.ssh/id_ed25519.pub
 [core]
     editor = nvim
     excludesFile = ~/.global_gitignore
