@@ -1,69 +1,39 @@
-#!/usr/bin/env bash
-# Copyright (C) 2014 Julien Bonjean <julien@bonjean.info>
+#!/bin/sh
+# Arguments:
+# 1: icon
+# 2: color
 
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
+def_icon=
+def_col=#fff
+icon=${1:-$def_icon}
+col=${2:-$def_col}
 
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
 
-# You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+case $BLOCK_BUTTON in
+	1 | 2 | 3)
+        notify-send "$icon Memory hogs (%)" "$(ps axch -o cmd:10,pmem k -pmem | head | awk '$0=$0' )"
+        ;;
+esac
 
-TYPE="${BLOCK_INSTANCE:-mem}"
+# Get used and total memory (in bytes)
+read used total < <(free -b | awk '/^Mem:/ {print $3, $2}')
 
-awk -v type=$TYPE '
-/^MemTotal:/ {
-	mem_total=$2
-}
-/^MemFree:/ {
-	mem_free=$2
-}
-/^Buffers:/ {
-	mem_free+=$2
-}
-/^Cached:/ {
-	mem_free+=$2
-}
-/^SwapTotal:/ {
-	swap_total=$2
-}
-/^SwapFree:/ {
-	swap_free=$2
-}
-END {
-	if (type == "swap") {
-		free=swap_free/1024/1024
-		used=(swap_total-swap_free)/1024/1024
-		total=swap_total/1024/1024
-	} else {
-		free=mem_free/1024/1024
-		used=(mem_total-mem_free)/1024/1024
-		total=mem_total/1024/1024
-	}
+# Calculate the percentage of memory used
+percent=$(awk -v used="$used" -v total="$total" 'BEGIN { printf "%.0f", (used/total)*100 }')
 
-	pct=0
-	if (total > 0) {
-		pct=used/total*100
-	}
+# Determine the background color based on the percentage
+if [ "$percent" -lt 50 ]; then
+    col="#23A767"  # green for less than 50%
+elif [ "$percent" -lt 80 ]; then
+    col="#feb000"  # yellow for between 50% and 80%
+else
+    col="#FF0000"  # red for more than 80%
+fi
 
-	# full text
-	# printf("%.1fG/%.1fG (%.f%%)\n", used, total, pct)
-
-	# short text
-	printf(" %02.f%%\n", pct)
-
-	# color
-	if (pct > 90) {
-		print("#FF0000")
-	} else if (pct > 80) {
-		print("#FFAE00")
-	} else if (pct > 70) {
-		print("#FFF600")
-	}
-}
-' /proc/meminfo
+# printf "<span background='$bg_color' color='$col'>"
+printf "<span color='$col'>"
+	printf " $icon "
+	printf  $(free -h --si | awk '/^Mem:/ {print $3 "/" $2}')
+	printf " "
+printf "</span>"
+echo
