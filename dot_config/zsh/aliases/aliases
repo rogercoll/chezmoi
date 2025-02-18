@@ -56,3 +56,8 @@ alias kgp='kubectl get pods'
 alias cdgh='cd /home/neck/Documents/github/'
 alias cdd='cd /home/neck/Documents/'
 alias cddot='cd /home/neck/.config/dotfiles/'
+
+# +-----+
+# | SEC |
+# +-----+
+alias mkt='mkdir nmap scripts targets'
