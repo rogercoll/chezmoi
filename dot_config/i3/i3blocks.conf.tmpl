@@ -41,6 +41,13 @@ markup=pango
 # color=#807dfe
 # command=i3-msg -q exec kitty htop
 
+{{ if eq .profile "clean_zoom" }}
+[clean]
+full_text=💥
+command=pgrep zoom | xargs kill -9
+{{ end }}
+
+
 # [browser]
 # full_text= 
 # color=#ff7f81
