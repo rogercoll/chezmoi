@@ -43,8 +43,9 @@ markup=pango
 
 {{ if eq .profile "clean_zoom" }}
 [clean]
-full_text=💥
-command=pgrep zoom | xargs kill -9
+command=~/.config/i3/scripts/cleanup
+interval=10
+color=#ffffff
 {{ end }}
 
 
