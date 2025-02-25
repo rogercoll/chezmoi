@@ -6,6 +6,15 @@
     editor = nvim
     excludesFile = ~/.global_gitignore
     hooksPath = ~/.global_githooks
+[tag]
+    sort = version:refname
+[init]
+    defaultBranch = main
+[diff]
+    algorithm = histogram
+    colorMoved = plain
+    mnemonicPrefix = true
+    renames = true
 [alias]
     st = status
     co = checkout
