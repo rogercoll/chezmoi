@@ -60,7 +60,7 @@ vim.opt.cursorline = true
 vim.opt.scrolloff = 10
 
 -- Set custom treesitter foldmethod
-vim.opt.foldmethod = 'expr'
+-- vim.opt.foldmethod = 'expr'
 vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
 
 -- Set and enable the spell language to en_us
