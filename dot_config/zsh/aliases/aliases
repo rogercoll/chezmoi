@@ -37,6 +37,7 @@ alias vim=nvim_launch
 alias myip='curl ifconfig.co'
 alias weather='curl wttr.in/barcelona?1'
 alias crypto='ssh cointop.sh'
+alias arch='uname -m'
 
 
 # +--------+
