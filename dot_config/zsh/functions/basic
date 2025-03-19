@@ -152,3 +152,14 @@ function flacky() {
     echo "Command succeeded, running again..."
 done
 }
+
+# print container cgroup stats
+function watch_container_cpu {
+  p=$1
+  if [ -z "$p" ]; then
+    echo "watch_container_cpu() - print container cgroup stats"
+    echo "Usage: watch_container_cpu <container name>"
+    return
+  fi
+  watch -n 2 sudo cat /sys/fs/cgroup/system.slice/docker-$(sudo docker inspect --format="{{.Id}}" $p).scope/cpu.stat
+}
