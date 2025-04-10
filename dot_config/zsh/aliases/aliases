@@ -54,7 +54,7 @@ alias kgp='kubectl get pods'
 # +----+
 # | cd |
 # +----+
-alias cdgh='cd /home/neck/Documents/github/'
+alias cdgh='cd /home/neck/Documents/github/rogercoll/'
 alias cdd='cd /home/neck/Documents/'
 alias cddot='cd /home/neck/.config/dotfiles/'
 
