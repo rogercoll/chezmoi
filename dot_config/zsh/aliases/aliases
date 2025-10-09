@@ -62,3 +62,9 @@ alias cddot='cd /home/neck/.config/dotfiles/'
 # | SEC |
 # +-----+
 alias mkt='mkdir nmap scripts targets'
+
+
+# +-----+
+# | OBS |
+# +-----+
+alias pscount='ps -eo s,comm,wchan | sort | uniq -c | sort -nbr | head'

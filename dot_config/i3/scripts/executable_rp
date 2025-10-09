@@ -20,7 +20,8 @@ GetOptions("help|h"      => \&help,
            "threshold=i" => \$threshold);
 
 # Define the start date: January 1, 2025.
-my $start_date_str = "2025-01-01";
+# Last: 200 days
+my $start_date_str = "2025-08-05";
 my $start_date = Time::Piece->strptime($start_date_str, "%Y-%m-%d");
 
 # Get the current local time.
