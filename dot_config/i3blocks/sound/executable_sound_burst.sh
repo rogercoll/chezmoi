@@ -72,19 +72,42 @@ volume() {
 }
 
 format() {
-  
+    VOLUME_MUTE="🔇"
+    VOLUME_LOW="🔈"
+    VOLUME_MID="🔉"
+    VOLUME_HIGH="🔊"
+    SOUND_LEVEL=$(amixer -M get Master | awk -F"[][]" '/%/ { print $2 }' | awk -F"%" 'BEGIN{tot=0; i=0} {i++; tot+=$1} END{printf("%s\n", tot/i) }')
+    MUTED=$(amixer get Master | awk ' /%/{print ($NF=="[off]" ? 1 : 0); exit;}')
+
+    ICON=$VOLUME_MUTE
+    if [ "$MUTED" = "1" ]
+    then
+        ICON="$VOLUME_MUTE"
+    else
+        if [ "$SOUND_LEVEL" -lt 34 ]
+        then
+            ICON="$VOLUME_LOW"
+        elif [ "$SOUND_LEVEL" -lt 67 ]
+        then
+            ICON="$VOLUME_MID"
+        else
+            ICON="$VOLUME_HIGH"
+        fi
+    fi
+
   perl_filter='if (/.*\[(\d+%)\] (\[(-?\d+.\d+dB)\] )?\[(on|off)\]/)'
   perl_filter+='{CORE::say $4 eq "off" ? "MUTE" : "'
   # If dB was selected, print that instead
   perl_filter+=$([[ $STEP = *dB ]] && echo '$3' || echo '$1')
   perl_filter+='"; exit}'
   output=$(perl -ne "$perl_filter")
-  echo "$LABEL$output"
+  echo "$ICON $LABEL$output"
 }
 
 #------------------------------------------------------------------------
 
 case $BLOCK_BUTTON in
+  1) pavucontrol & ;; # left click, launch pavucontrol
   3) amixer $AMIXER_PARAMS -q -D $MIXER sset $SCONTROL $(capability) toggle ;;  # right click, mute/unmute
   4) amixer $AMIXER_PARAMS -q -D $MIXER sset $SCONTROL $(capability) ${STEP}+ unmute ;; # scroll up, increase
   5) amixer $AMIXER_PARAMS -q -D $MIXER sset $SCONTROL $(capability) ${STEP}- unmute ;; # scroll down, decrease
