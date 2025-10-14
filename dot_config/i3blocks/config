@@ -1,17 +1,21 @@
-[WEATHER_SIGNALER]
-command=~/.config/i3blocks/weather/weather_signaler
-interval=once
+#[WEATHER_SIGNALER]
+#command=~/.config/i3blocks/weather/weather_signaler
+#interval=once
+#
+#[WEATHER]
+#command=~/.config/i3blocks/weather/weather_info.sh
+#interval=300
+#color=#FEC925
+#signal=2
 
-[WEATHER]
-command=~/.config/i3blocks/weather/weather_info.sh
-interval=300
-color=#FEC925
-signal=2
+#[DISK]
+#command=df -h / | awk '/\//{ printf(" 💾 %4s/%s \n", $4, $2) }'
+#interval=2
+#color=#C9E3DB
 
-[DISK]
-command=df -h / | awk '/\//{ printf(" 💾 %4s/%s \n", $4, $2) }'
-interval=2
-color=#C9E3DB
+[power_profile]
+command=~/.config/i3blocks/battery/profile.sh
+interval=3
 
 [BATTERY]
 command=~/.config/i3blocks/battery/battery_info.sh
