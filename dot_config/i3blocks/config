@@ -40,3 +40,8 @@ interval=1
 [TIME_DATE]
 command=date +" %a, %d %b - %H:%M:%S"
 interval=1
+
+
+[shutdown_menu]
+full_text= 
+command=~/.config/i3blocks/power/menu.sh
