@@ -33,7 +33,7 @@ interval=1
 color=#FEC925
 
 [SOUND]
-command=~/.config/i3blocks/sound/sound_burst.sh
+command=~/.config/i3blocks/sound/sound.sh
 instance=Master
 interval=1
 

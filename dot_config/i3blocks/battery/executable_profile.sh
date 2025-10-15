@@ -50,5 +50,5 @@ current=$(get_current_profile)
 icon=$(get_icon "$current")
 
 # Output for i3blocks: full text and short text
-echo "$icon"
+echo " $icon $current "
 echo "$icon $current"

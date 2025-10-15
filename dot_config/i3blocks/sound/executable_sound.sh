@@ -101,7 +101,7 @@ format() {
   perl_filter+=$([[ $STEP = *dB ]] && echo '$3' || echo '$1')
   perl_filter+='"; exit}'
   output=$(perl -ne "$perl_filter")
-  echo "$ICON $LABEL$output"
+  echo " $ICON $LABEL$output "
 }
 
 #------------------------------------------------------------------------
