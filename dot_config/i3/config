@@ -166,15 +166,10 @@ bindsym $mod+Return exec --no-startup-id kitty
 bindsym $mod+q kill
 
 # exit-menu
-bindsym $mod+Shift+e exec --no-startup-id ~/.config/i3/scripts/powermenu
+bindsym $mod+Shift+e exec --no-startup-id ~/.config/i3blocks/power/menu.sh
 
 # Lock the system
-# lock with a picture:
-#bindsym $mod+l exec --no-startup-id i3lock -i  ~/.config/i3/i3-lock-screen.png -p default|win -t
-# lock by blurring the screen:
-bindsym $mod+w exec --no-startup-id ~/.config/i3/scripts/blur-lock
-# lock in case after sleep
-exec --no-startup-id xss-lock -l ~/.config/i3/scripts/blur-lock
+bindsym $mod+z exec --no-startup-id i3lock -p default|win -t
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -182,11 +177,8 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to update i3)
 bindsym $mod+Shift+r restart
 
-# keybinding in fancy rofi (automated):
-bindsym F1 exec --no-startup-id ~/.config/i3/scripts/keyhint-2
-# alternative
-# keybinding list in editor:
-# bindsym $mod+F1 exec --no-startup-id xed ~/.config/i3/keybindings
+# keybinding in rofi (automated):
+bindsym F1 exec --no-startup-id ~/.config/i3/scripts/keyhint
 
 # Backlight control
 #bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight +10 && notify-send "Brightness - $(xbacklight -get | cut -d '.' -f 1)%"
@@ -230,7 +222,7 @@ bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
-bindsym $mod+g layout tabbed
+bindsym $mod+t layout tabbed
 bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
@@ -280,9 +272,6 @@ bindsym $mod+p exec --no-startup-id /usr/local/bin/switch-audio-port
 bindsym $mod+b exec --no-startup-id /usr/bin/firefox
 # bindsym Print exec --no-startup-id scrot ~/%Y-%m-%d-%T-screenshot.png && notify-send "Screenshot saved to ~/$(date +"%Y-%m-%d-%T")-screenshot.png"
 bindsym Print exec --no-startup-id /usr/bin/spectacle
-
-# Power Profiles menu switcher (rofi)
-bindsym $mod+Shift+p exec --no-startup-id ~/.config/i3/scripts/power-profiles
 
 ##########################################
 # configuration for workspace behaviour: #
@@ -568,7 +557,7 @@ bindsym $mod+d exec --no-startup-id rofi -modi drun -show drun \
 
 ## rofi bindings for window menu ($mod+t /F10 optional disabled)
 
-bindsym $mod+t exec --no-startup-id rofi -show window \
+bindsym $mod+w exec --no-startup-id rofi -show window \
 		-config ~/.config/rofi/rofidmenu.rasi
 
 #bindsym F10 exec --no-startup-id rofi -show window \
