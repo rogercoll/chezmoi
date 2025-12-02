@@ -9,8 +9,10 @@ return {
 	-- NOTE: Tmux ctrl navigation.
 	{ "christoomey/vim-tmux-navigator" },
 
-	-- NOTE: Tab line
+	-- NOTE: Tab line (simple)
 	{ "pacha/vem-tabline" },
+	-- NOTE: Tab line with jump mode
+	-- { "romgrk/barbar.nvim" },
 
 	-- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
 	"tpope/vim-sleuth", -- Detect tabstop and shiftwidth automatically
