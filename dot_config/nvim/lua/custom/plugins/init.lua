@@ -1,4 +1,8 @@
 return {
+	-- NOTE: Place visible line in loops to keep the context: https://github.com/wellle/context.vim
+	-- WARN: validate performance, might be low
+	{ "wellle/context.vim" },
+
 	-- NOTE: Place cursor to last edited line
 	{ "farmergreg/vim-lastplace" },
 
